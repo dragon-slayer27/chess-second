@@ -9,7 +9,7 @@ thumb, homework, and a WhatsApp-ready note for parents in their own language.
 It runs on an ordinary laptop with open models (Stockfish + Gemma 4 through Ollama), so
 students' games and names never leave the coach's machine, and a review costs nothing.
 
-![A Second review](docs/review.png)
+![Second reviewing a real game: paste a PGN, Stockfish and Gemma run on the laptop, the verified review comes out](docs/demo.gif)
 
 In chess, a *second* is the analyst who does the preparation so the player (or the coach) can focus
 on the game. That is the job here: the coach still teaches, Second does the Sunday-night homework checking.

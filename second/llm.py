@@ -137,6 +137,8 @@ class GeminiClient:
             return self.chat_json(system, user, schema, temperature)
         if response.status_code == 429:
             raise LLMError("the free Gemma quota is used up for now; try again in a minute")
+        if response.status_code in (400, 401, 403) and "api key" in response.text.lower():
+            raise LLMError("the Gemini API key was rejected; check GEMINI_API_KEY")
         if response.status_code >= 400:
             raise LLMError(f"Gemini API returned {response.status_code}: {response.text[:200]}")
         body = response.json()

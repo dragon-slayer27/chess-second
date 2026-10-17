@@ -22,7 +22,15 @@ from .verify import HALLUCINATION_KINDS, Issue, verify_moment, verify_summary
 
 Progress = Callable[[str, float], None]
 MAX_ATTEMPTS = 3
-FATAL_ERRORS = ("couldn't reach", "no language model", "quota", "not set", "returned 401", "returned 403")
+FATAL_ERRORS = (
+    "couldn't reach",
+    "no language model",
+    "quota",
+    "not set",
+    "was rejected",
+    "returned 401",
+    "returned 403",
+)
 
 
 def new_review_id() -> str:
