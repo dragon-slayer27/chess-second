@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}{{ heading }}{% endblock %}
+{% block content %}
+<section class="intro">
+  <h1>{{ heading }}</h1>
+  {% if intro %}<p class="lede">{{ intro }}</p>{% endif %}
+</section>
+{% if reviews %}
+<div class="cards">
+  {% for item in reviews %}{% include "_card.html" %}{% endfor %}
+</div>
+{% else %}
+<p class="card">{{ empty }} <a href="/">Review a game</a>.</p>
+{% endif %}
+{% endblock %}

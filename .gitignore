@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Local data: reviews of real students stay on this machine
+data/
+reports/
+
+# Downloaded engine binaries
+bin/
+
+# Secrets
+.env

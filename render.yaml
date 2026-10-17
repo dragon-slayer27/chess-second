@@ -1,0 +1,19 @@
+# Render Blueprint for the public demo of Second.
+# Stockfish runs inside the container; the notes come from Gemma 4 on Google AI Studio
+# (free tier), because a free Render instance has too little memory to run Gemma itself.
+services:
+  - type: web
+    name: chess-second
+    runtime: docker
+    plan: free
+    region: singapore
+    healthCheckPath: /healthz
+    envVars:
+      - key: SECOND_PUBLIC_DEMO
+        value: "1"
+      - key: SECOND_LLM_BACKEND
+        value: gemini
+      - key: SECOND_GEMINI_MODEL
+        value: gemma-4-26b-a4b-it
+      - key: GEMINI_API_KEY
+        sync: false

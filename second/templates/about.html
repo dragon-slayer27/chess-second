@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}How it works{% endblock %}
+{% block content %}
+<section class="intro">
+  <h1>How Second works</h1>
+  <p class="lede">A language model on its own is bad at chess. It will happily explain a move that is illegal,
+    or tell a ten-year-old they lost their queen when they lost a pawn. So in Second the model never analyses
+    anything. It only puts verified facts into kind words.</p>
+</section>
+
+<section class="card steps">
+  <ol>
+    <li><strong>Stockfish checks every move.</strong> Each position is analysed (two best lines, depth {{ settings.engine_depth }}).
+      A move counts as a mistake when the player's winning chances drop by 10 or more percentage points, or 15 or more for a blunder, using the same curve and thresholds as Lichess.</li>
+    <li><strong>Code turns the analysis into facts.</strong> python-chess finds what actually happened: a piece left undefended,
+      a fork, a missed checkmate, a back-rank mate, material won or lost along the engine's line.</li>
+    <li><strong>Gemma writes the notes.</strong> An open-weight Gemma model gets only those facts and writes a headline,
+      an explanation, a question to ask the student, a rule of thumb, homework and a note for parents in their language.</li>
+    <li><strong>The verifier checks every claim.</strong> Every move, square, "mate in N", move number and "you lose your X" in the
+      note must appear in the facts. If not, Gemma gets the list of problems and tries again. After three failed tries
+      Second uses a plain note built from the facts, so nothing invented ever reaches a student.</li>
+  </ol>
+</section>
+
+<section class="card">
+  <h2>Why open models</h2>
+  <ul>
+    <li><strong>Private by default.</strong> Run locally, students' games and names never leave the coach's laptop.
+      The model doesn't even see the name: Second fills it in afterwards.</li>
+    <li><strong>Free to run.</strong> No per-review API bill, so a coach can review 30 games every Sunday at no cost.</li>
+    <li><strong>Swappable.</strong> The same prompts and verifier work with Gemma on this laptop, on Ollama Cloud or on Google AI Studio.</li>
+    <li><strong>Built on open chess.</strong> Stockfish (GPL), python-chess (GPL) and the CC0 Lichess database make this possible.</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>This instance</h2>
+  <ul class="mono">
+    <li>Stockfish: {{ 'found' if settings.stockfish_path else 'not found' }}</li>
+    <li>Model backend: {{ settings.llm_backend }}{% if settings.llm_backend == 'ollama' %} ({{ settings.ollama_model }}){% elif settings.llm_backend == 'gemini' %} ({{ settings.gemini_model }}){% endif %}</li>
+    <li>Engine depth: {{ settings.engine_depth }} · key moments per game: {{ settings.max_moments }}</li>
+  </ul>
+</section>
+{% endblock %}

@@ -1,0 +1,6 @@
+<a class="card mini" href="/reviews/{{ item.id }}">
+  <span class="mini-title">{{ item.title or (item.student ~ ' · ' ~ item.outcome) }}</span>
+  <span class="mini-meta">{{ item.white }} vs {{ item.black }} · {{ item.result }}</span>
+  {% if item.blurb %}<span class="mini-blurb">{{ item.blurb }}</span>{% endif %}
+  <span class="mini-meta">{{ item.moments }} key moments{% if item.accuracy is not none %} · accuracy {{ item.accuracy }}%{% endif %}</span>
+</a>

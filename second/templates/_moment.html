@@ -1,0 +1,46 @@
+{% set note = moment.note %}
+{% set good = moment.kind == "good" %}
+<section class="card moment {{ 'good' if good else moment.judgement }}">
+  <header class="moment-head">
+    <span class="pill {{ 'good' if good else moment.judgement }}">{{ 'great move' if good else moment.judgement }}</span>
+    <span class="move-label">{{ moment.label }}</span>
+    <h2>{{ note.headline }}</h2>
+  </header>
+  <div class="moment-body">
+    <div class="boards">
+      <figure>
+        {{ board_before_svg(moment, 280) }}
+        <figcaption>
+          {% if good %}<span class="key green"></span>{{ moment.played }}
+          {% else %}<span class="key red"></span>played {{ moment.played }}{% if moment.best %} <span class="key green"></span>better {{ moment.best }}{% endif %}{% endif %}
+        </figcaption>
+      </figure>
+      {% set after = board_after_svg(moment, 280) %}
+      {% if after %}
+      <figure>
+        {{ after }}
+        <figcaption><span class="key amber"></span>then {{ moment.reply_line[0] }}</figcaption>
+      </figure>
+      {% endif %}
+    </div>
+    <div class="moment-text">
+      <p class="explanation">{{ note.explanation }}</p>
+      <p class="ask"><strong>Ask {{ review.student.name or "your student" }}:</strong> {{ note.question }}</p>
+      <p class="tip"><strong>Rule of thumb:</strong> {{ note.tip }}</p>
+      <details class="facts">
+        <summary>
+          {% if moment.note_source == "model" %}<span class="check">&#10003;</span> Every claim checked against the engine
+          {% else %}<span class="check muted">&#9679;</span> Written from the engine facts{% endif %}
+        </summary>
+        <ul>{% for sentence in moment.sentences %}<li>{{ sentence }}</li>{% endfor %}</ul>
+        {% if not good %}
+        <p class="mono">Evaluation {{ moment.score_before }} &rarr; {{ moment.score_after }} · winning chances {{ moment.win_before }}% &rarr; {{ moment.win_after }}%</p>
+        {% if moment.best_line %}<p class="mono">Best line: {{ moment.best_line[:6]|join(" ") }}</p>{% endif %}
+        {% endif %}
+        {% if moment.caught %}
+        <p class="caught">The verifier rejected {{ moment.attempts - (1 if moment.note_source == "model" else 0) }} earlier draft{{ '' if moment.attempts == 2 else 's' }}: {{ moment.caught|join("; ") }}.</p>
+        {% endif %}
+      </details>
+    </div>
+  </div>
+</section>

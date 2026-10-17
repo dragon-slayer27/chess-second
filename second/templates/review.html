@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% set student = review.student.name or ("the " ~ review.student.color ~ " player") %}
+{% block title %}Review for {{ review.student.name or review.student.color|capitalize }}{% endblock %}
+{% block content %}
+<article class="review">
+<section class="card hero">
+  <div class="hero-top">
+    <div>
+      <p class="eyebrow">{% if review.sample_title %}Sample review · {% endif %}Game review</p>
+      <h1>{{ review.student.name or review.student.color|capitalize }} {{ review.outcome }}</h1>
+      <p class="meta">
+        {{ review.game.white }}{% if review.game.white_elo %} ({{ review.game.white_elo }}){% endif %}
+        vs {{ review.game.black }}{% if review.game.black_elo %} ({{ review.game.black_elo }}){% endif %}
+        · {{ review.game.result }} · {{ review.game.moves }} moves
+        {% if review.game.opening %} · {{ review.game.opening }}{% endif %}
+        {% if review.game.date and '?' not in review.game.date %} · {{ review.game.date }}{% endif %}
+      </p>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>{{ review.accuracy.student }}%</strong><span>accuracy</span></div>
+      <div class="stat bad"><strong>{{ review.counts.blunder }}</strong><span>blunders</span></div>
+      <div class="stat warn"><strong>{{ review.counts.mistake }}</strong><span>mistakes</span></div>
+    </div>
+  </div>
+  <figure class="graph-wrap">
+    {{ eval_graph_svg(review) }}
+    <figcaption>{{ student|capitalize }}'s winning chances, move by move. Red dots are the moments below{% if review.good_moment %}, green is the best move of the game{% endif %}.</figcaption>
+  </figure>
+  <p class="provenance">
+    <span class="tag">{{ review.engine.name }} · depth {{ review.engine.depth }}</span>
+    <span class="tag">{{ review.model.label }}</span>
+    <span class="tag ok">{{ review.stats.hallucinations_caught }} invented detail{{ '' if review.stats.hallucinations_caught == 1 else 's' }} caught by the verifier</span>
+    <span class="tag">{{ fmt_seconds(review.timings.total_s) }}</span>
+  </p>
+</section>
+
+<section class="card summary">
+  <h2>Coach's summary</h2>
+  <p>{{ review.summary.summary }}</p>
+  <div class="two-col">
+    <div>
+      <h3>Did well</h3>
+      <ul>{% for item in review.summary.strengths %}<li>{{ item }}</li>{% endfor %}</ul>
+    </div>
+    <div>
+      <h3>Work on</h3>
+      <ul>{% for item in review.summary.focus %}<li>{{ item }}</li>{% endfor %}</ul>
+    </div>
+  </div>
+  <p class="homework"><strong>Homework:</strong> {{ review.summary.homework }}</p>
+</section>
+
+{% for moment in review.moments %}
+{% include "_moment.html" %}
+{% endfor %}
+{% if review.good_moment %}
+{% set moment = review.good_moment %}
+{% include "_moment.html" %}
+{% endif %}
+
+<section class="card parent">
+  <h2>Note for parents <small>{{ review.student.language }}</small></h2>
+  <p id="parent-note" class="parent-note">{{ review.summary.parent_note }}</p>
+  <div class="actions">
+    <button type="button" data-copy="#parent-note">Copy</button>
+    <a class="button whatsapp" href="https://wa.me/?text={{ review.summary.parent_note|urlencode }}" target="_blank" rel="noopener">Send on WhatsApp</a>
+  </div>
+</section>
+
+{% if not standalone %}
+<section class="card actions-card">
+  <h2>Take it with you</h2>
+  <div class="actions">
+    <a class="button" href="/reviews/{{ review.id }}/pgn">Annotated PGN</a>
+    <a class="button" href="/reviews/{{ review.id }}/download">Save as a web page</a>
+    <button type="button" onclick="window.print()">Print</button>
+  </div>
+  <p class="hint">The annotated PGN has every note as a comment and the better moves as variations.
+    Import it into a <a href="https://lichess.org/study" target="_blank" rel="noopener">Lichess study</a> to go through it with your student.</p>
+</section>
+{% endif %}
+</article>
+{% endblock %}

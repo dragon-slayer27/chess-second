@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Reviewing…{% endblock %}
+{% block content %}
+<section class="card job" id="job" data-job="{{ job.id }}">
+  <h1>Reviewing…</h1>
+  <div class="progress"><div class="bar" id="bar" style="width: {{ (job.fraction * 100)|round|int }}%"></div></div>
+  <p id="message">{{ job.message }}</p>
+  <p class="hint">Stockfish checks every move first, then Gemma writes the notes and the verifier checks each one.
+    On a laptop this takes a minute or two per game.</p>
+  <div id="links"></div>
+</section>
+{% endblock %}

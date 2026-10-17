@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Second{% endblock %} · Second</title>
+<meta name="description" content="Game reviews for chess coaches. Stockfish finds the mistakes, Gemma explains them, code checks every claim.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#9822;</text></svg>">
+{% if standalone %}<style>{{ inline_css }}</style>{% else %}<link rel="stylesheet" href="/static/style.css">{% endif %}
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="{{ repo_url if standalone else '/' }}"><span class="knight">&#9822;</span> Second</a>
+  {% if not standalone %}
+  <nav>
+    <a href="/">New review</a>
+    {% if not public_demo %}<a href="/reviews">Reviews</a>{% endif %}
+    <a href="/samples">Samples</a>
+    <a href="/about">How it works</a>
+  </nav>
+  {% endif %}
+</header>
+{% if public_demo and not standalone %}
+<div class="banner">
+  Public demo: Stockfish runs on Render and the notes come from Gemma 4 on Google AI Studio, so only paste <strong>public</strong> games.
+  For your students' games, <a href="{{ repo_url }}#run-it-on-your-laptop">run Second on your own laptop</a> where nothing leaves the machine.
+</div>
+{% endif %}
+<main>
+{% block content %}{% endblock %}
+</main>
+<footer>
+  <p>Second is open source (GPL-3.0): Stockfish finds it, Gemma explains it, code checks it. <a href="{{ repo_url }}">Source on GitHub</a></p>
+</footer>
+{% if standalone %}
+<script>
+document.querySelectorAll("[data-copy]").forEach(function (button) {
+  button.addEventListener("click", function () {
+    var target = document.querySelector(button.dataset.copy);
+    navigator.clipboard.writeText(target.innerText).then(function () { button.textContent = "Copied!"; });
+  });
+});
+</script>
+{% else %}
+<script src="/static/app.js" defer></script>
+{% endif %}
+{% block scripts %}{% endblock %}
+</body>
+</html>
