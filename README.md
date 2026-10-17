@@ -2,6 +2,9 @@
 
 **Stockfish finds it. Gemma explains it. Code checks it.**
 
+**Try it:** https://chess-second.onrender.com (public demo, free instance, so give it a minute to wake up) ·
+[sample reviews](https://chess-second.onrender.com/samples)
+
 Second turns your students' games into review sheets you can teach from: the turning points
 on board diagrams, a kid-friendly explanation of each one, a question to ask in class, a rule of
 thumb, homework, and a WhatsApp-ready note for parents in their own language.
@@ -120,7 +123,7 @@ PGN with the notes as comments and the better moves as variations, ready to impo
 
 ## The public demo on Render
 
-[`render.yaml`](render.yaml) deploys the same app as a public demo on Render's free plan. A free
+**Live at https://chess-second.onrender.com.** [`render.yaml`](render.yaml) deploys the same app as a public demo on Render's free plan. A free
 instance doesn't have the memory to run Gemma, so the demo runs Stockfish in the container and
 asks Gemma 4 on Google AI Studio for the notes. Because the model is open, the prompts, the
 verifier and the model family are identical to the laptop version; only the place the weights run
