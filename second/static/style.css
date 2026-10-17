@@ -51,13 +51,14 @@ footer { text-align: center; color: var(--muted); font-size: .9rem; padding: 10p
 
 .form h2 { margin-top: 8px; font-size: 1.15rem; }
 .form label { display: block; font-weight: 600; margin: 12px 0 6px; font-size: .95rem; }
-.form input, .form select, .form textarea { width: 100%; padding: 10px 12px; border: 1px solid #cfc8b8; border-radius: 10px;
+.form input:not([type="radio"]), .form select, .form textarea { width: 100%; padding: 10px 12px; border: 1px solid #cfc8b8; border-radius: 10px;
   font: inherit; background: #fffdf8; }
+.form #games { max-width: 140px; }
 .form textarea { font-family: var(--mono); font-size: .9rem; }
 .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
 .tabs label { margin: 0; font-weight: 500; padding: 7px 12px; border: 1px solid #cfc8b8; border-radius: 999px; cursor: pointer; background: #fffdf8; }
 .tabs label:has(input:checked) { background: var(--green); color: #fff; border-color: var(--green); }
-.tabs input { margin-right: 6px; }
+.tabs input { margin: 0 6px 0 0; accent-color: var(--green); }
 .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0 16px; }
 button, .button { display: inline-block; font: inherit; font-weight: 600; padding: 9px 16px; border-radius: 10px; cursor: pointer;
   border: 1px solid #cfc8b8; background: #fffdf8; color: var(--ink); text-decoration: none; }
@@ -86,7 +87,7 @@ button.link { border: 0; background: none; color: var(--green); padding: 6px 0; 
 .stat.bad { background: var(--red-soft); }
 .stat.warn { background: var(--amber-soft); }
 .graph-wrap { margin: 16px 0 6px; }
-.graph { width: 100%; height: 110px; display: block; background: #fbf9f4; border-radius: 10px; }
+.graph { width: 100%; height: auto; display: block; background: #fbf9f4; border-radius: 10px; }
 .graph .mid { stroke: #d9d2c3; stroke-dasharray: 4 4; }
 .graph .area { fill: rgba(46, 125, 79, .16); }
 .graph .line { fill: none; stroke: var(--green); stroke-width: 2; }

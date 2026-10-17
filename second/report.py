@@ -56,7 +56,7 @@ def board_after_svg(moment: dict, size: int = 300) -> Markup | None:
     return Markup(svg)
 
 
-def eval_graph_svg(review: dict, width: int = 640, height: int = 110) -> Markup:
+def eval_graph_svg(review: dict, width: int = 900, height: int = 110) -> Markup:
     """Area chart of the student's winning chances, with the key moments marked."""
     series = review.get("win_series") or []
     if len(series) < 2:

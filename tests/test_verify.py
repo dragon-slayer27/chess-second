@@ -53,6 +53,17 @@ def test_tactic_words_are_allowed_when_the_facts_have_them():
     assert check_text("Your opponent had a fork.", Allowed.from_moment(moment)) == []
 
 
+def test_hanging_claims_must_match_the_facts():
+    allowed = Allowed.from_moment(MOMENT)
+    assert "wrong_piece" in kinds(check_text("Your knight on f6 is hanging.", allowed))
+    assert "wrong_piece" in kinds(check_text("It can be taken by the bishop.", allowed))
+    facts = {
+        **MOMENT,
+        "sentences": ["After Nf6, your knight on f6 is attacked by the queen on h5 and nothing defends it."],
+    }
+    assert check_text("Your knight on f6 was hanging.", Allowed.from_moment(facts)) == []
+
+
 def test_checkmate_claims_need_a_mate_in_the_facts():
     no_mate = {
         **MOMENT,
@@ -82,6 +93,18 @@ SUMMARY = {
     "homework": "Solve 10 mate in 1 puzzles.",
     "parent_note": "[STUDENT] played bravely today and is learning to spot threats.",
 }
+
+
+def test_summary_may_use_numbers_from_its_own_facts():
+    facts = "- The student's accuracy was 75.1%.\n- The student castled on move 9."
+    summary = {**SUMMARY, "summary": "[STUDENT] castled on move 9 and played with 75.1% accuracy."}
+    assert verify_summary(summary, [MOMENT], "English", facts) == []
+    assert {"wrong_move_number", "invented_number"} <= kinds(verify_summary(summary, [MOMENT], "English"))
+
+
+def test_issues_know_which_field_they_are_in():
+    note = {**GOOD_NOTE, "tip": "Play Nc6 next time."}
+    assert {issue.where for issue in verify_moment(note, MOMENT)} == {"tip"}
 
 
 def test_summary_passes_and_list_fields_accept_strings():

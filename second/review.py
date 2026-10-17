@@ -16,7 +16,7 @@ from .engine import Analyzer, GameAnalysis
 from .facts import build_moment, select_good_moment, select_moments
 from .llm import LLMError
 from .motifs import color_name, habit_sentences, opening_habits
-from .prompts import MOMENT_SCHEMA, SUMMARY_SCHEMA, moment_prompt, summary_prompt, system_prompt
+from .prompts import MOMENT_SCHEMA, SUMMARY_SCHEMA, moment_prompt, summary_facts, summary_prompt, system_prompt
 from .report import annotated_pgn
 from .verify import HALLUCINATION_KINDS, Issue, verify_moment, verify_summary
 
@@ -57,12 +57,17 @@ def write_note(
     check: Callable[[dict], list[Issue]],
     fallback_note: Callable[[], dict],
 ) -> dict:
-    """Ask the model, verify, retry with feedback, and fall back to a template if needed."""
+    """Ask the model, verify, retry with feedback, and fall back to a template if needed.
+
+    If the last answer still has problems, only the fields with problems are replaced by the
+    template; fields that passed (say, a correct parent note in Hindi) are kept.
+    """
     caught: list[str] = []
     hallucinations = 0
     errors: list[str] = []
     feedback = ""
     attempts = 0
+    last: tuple[dict, list[Issue]] | None = None
     for attempt in range(1, MAX_ATTEMPTS + 1):
         attempts = attempt
         try:
@@ -82,12 +87,22 @@ def write_note(
                 "hallucinations_caught": hallucinations,
                 "errors": errors,
             }
+        last = (data, issues)
         caught.extend(str(issue) for issue in issues)
         hallucinations += sum(1 for issue in issues if issue.kind in HALLUCINATION_KINDS)
         feedback = _feedback(issues)
+
+    note, source = fallback_note(), "template"
+    if last is not None:
+        data, issues = last
+        failed = {issue.where for issue in issues}
+        if "" not in failed:
+            kept = {key: value for key, value in _clean(data, schema).items() if key not in failed and value}
+            if kept:
+                note, source = {**note, **kept}, "partial"
     return {
-        "note": fallback_note(),
-        "source": "template",
+        "note": note,
+        "source": source,
         "attempts": attempts,
         "caught": caught,
         "hallucinations_caught": hallucinations,
@@ -175,14 +190,14 @@ def review_game(
     model_started = time.perf_counter()
     calls_before = _usage(llm)
     total_notes = len(all_moments) + 1
-    stats = {"model_notes": 0, "template_notes": 0, "retries": 0, "hallucinations_caught": 0}
+    stats = {"model_notes": 0, "partial_notes": 0, "template_notes": 0, "retries": 0, "hallucinations_caught": 0}
 
     def record(target: dict, result: dict) -> None:
         target["note_source"] = result["source"]
         target["attempts"] = result["attempts"]
         target["caught"] = result["caught"]
         target["hallucinations_caught"] = result["hallucinations_caught"]
-        stats["model_notes" if result["source"] == "model" else "template_notes"] += 1
+        stats[f"{result['source']}_notes"] += 1
         stats["retries"] += max(0, result["attempts"] - 1)
         stats["hallucinations_caught"] += result["hallucinations_caught"]
 
@@ -217,7 +232,7 @@ def review_game(
         system,
         summary_prompt(context, language),
         SUMMARY_SCHEMA,
-        lambda data: verify_summary(data, all_moments, language),
+        lambda data: verify_summary(data, all_moments, language, summary_facts(context)),
         lambda: fallback.summary_note(context),
     )
     summary = result["note"]

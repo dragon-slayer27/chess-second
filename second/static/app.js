@@ -1,15 +1,16 @@
 (function () {
   "use strict";
 
+  // A real 1531-rated blitz game from the CC0 Lichess database (https://lichess.org/kvatmony), names changed.
   var SAMPLE_PGN = [
-    '[Event "Club rapid"]',
-    '[White "Aarav"]',
+    '[Event "Rated Blitz game"]',
+    '[White "Ananya"]',
     '[Black "Opponent"]',
     '[Result "0-1"]',
     "",
-    "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. exd5 Nxd5 6. Nxf7 Kxf7 7. Qf3+ Ke6",
-    "8. Nc3 Ncb4 9. a3 Nxc2+ 10. Kd1 Nxa1 11. Nxd5 Kd6 12. d4 c6 13. Nc3 exd4",
-    "14. Ne4+ Kc7 15. Bf4+ Kb6 16. Qf3 Qe7 17. Re1 Be6 18. Bxe6 Qxe6 19. Nc5 Qd5 0-1",
+    "1. e4 d5 2. exd5 Qxd5 3. d4 Qe6+ 4. Be2 Qe4 5. Nf3 Bg4 6. O-O c6 7. Re1 Bxf3 8. Bxf3 Qg6",
+    "9. Be4 f5 10. Bf3 h5 11. Bf4 Nd7 12. d5 c5 13. d6 e6 14. Nc3 h4 15. Nd5 O-O-O",
+    "16. Ne7+ Bxe7 17. dxe7 Nxe7 18. Qd6 e5 19. Rxe5 Qxd6 20. Rxf5 Qe6 21. Bg4 Nxf5 0-1",
   ].join("\n");
 
   function showSource() {
@@ -34,7 +35,7 @@
   if (sample) {
     sample.addEventListener("click", function () {
       document.getElementById("pgn_text").value = SAMPLE_PGN;
-      document.getElementById("student_name").value = "Aarav";
+      document.getElementById("student_name").value = "Ananya";
       document.getElementById("student_color").value = "white";
     });
   }

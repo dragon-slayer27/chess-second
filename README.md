@@ -49,8 +49,20 @@ The student's name is never sent to the model either: Gemma writes `[STUDENT]` a
 
 ## Does it work?
 
-See [eval/RESULTS.md](eval/RESULTS.md): real club games from the Lichess database, every mistake
-explained three ways (plain Gemma, Gemma with engine facts, and the full Second pipeline).
+I took 16 real games between 1000-1700 rated players from the CC0 Lichess database and had Gemma 4 E4B
+explain 29 of their blunders and mistakes three ways: the way people use a chatbot (the moves plus
+"explain this mistake"), with Second's engine facts, and through the full Second pipeline.
+
+| | Plain Gemma | Gemma + engine facts | Second |
+|---|---|---|---|
+| Suggests a concrete move | 14/29 | 29/29 | 29/29 |
+| ...and it is Stockfish's better move | **0/29** | 29/29 | 29/29 |
+| Mentions a piece move that isn't legal on the board | **7/29** | 0/29 | 0/29 |
+| Makes a chess claim the engine didn't confirm | **18/29** | 0/29 | 0/29 |
+
+After a beginner's 14. g4, plain Gemma recommended "14. Nf7", which isn't a legal move in that position.
+Given the facts, the same model wrote: *"If you had played Nxh6 instead, you would have won about 2 points
+of material."* Method, every note and more examples: [eval/RESULTS.md](eval/RESULTS.md).
 
 ## Run it on your laptop
 
@@ -79,7 +91,7 @@ Then open http://127.0.0.1:8000, paste a PGN (or a Lichess / Chess.com username)
 
 On Intel laptops with integrated Arc graphics, set `OLLAMA_IGPU_ENABLE=1` before starting Ollama:
 on a Core Ultra 5 125H this made prompt processing 10x faster (31 → 315 tokens/s) and a whole game
-review takes about 100 seconds.
+review takes about 90 seconds.
 
 ### Batch mode
 

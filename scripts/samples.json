@@ -1,0 +1,42 @@
+[
+  {
+    "id": "sample-allowed-mate",
+    "game": 7,
+    "color": "white",
+    "name": "Aarav",
+    "level": "beginner",
+    "language": "Hindi",
+    "title": "Aarav walks into a checkmate",
+    "blurb": "Real 1468-rated classical game. One king move allowed checkmate. Note for parents in Hindi."
+  },
+  {
+    "id": "sample-missed-fork",
+    "game": 11,
+    "color": "black",
+    "name": "Meera",
+    "level": "intermediate",
+    "language": "English",
+    "title": "Meera wins, but missed a fork",
+    "blurb": "Real 1547-rated classical game. A win with lessons in it, for an intermediate player."
+  },
+  {
+    "id": "sample-short-game",
+    "game": 15,
+    "color": "white",
+    "name": "Kabir",
+    "level": "beginner",
+    "language": "Hinglish",
+    "title": "Kabir wins a short game",
+    "blurb": "Real 1409-rated classical game. Undefended pieces on both sides. Note for parents in Hinglish."
+  },
+  {
+    "id": "sample-free-piece",
+    "game": 1,
+    "color": "white",
+    "name": "Ananya",
+    "level": "beginner",
+    "language": "Tamil",
+    "title": "Ananya leaves a piece hanging",
+    "blurb": "Real 1531-rated blitz game. A rook capture that left a piece undefended. Note for parents in Tamil."
+  }
+]

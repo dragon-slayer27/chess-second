@@ -1,0 +1,510 @@
+{
+ "id": "sample-missed-fork",
+ "version": 1,
+ "created_at": "2026-10-17T09:49:29+00:00",
+ "student": {
+  "name": "Meera",
+  "color": "black",
+  "level": "intermediate",
+  "language": "English"
+ },
+ "game": {
+  "white": "Opponent",
+  "black": "Meera",
+  "white_elo": "1624",
+  "black_elo": "1547",
+  "result": "0-1",
+  "date": "????.??.??",
+  "event": "Rated Classical game",
+  "site": "https://lichess.org/qnmjcpgo",
+  "opening": "Nimzo-Indian Defense #2",
+  "moves": 30,
+  "pgn": "[Event \"Rated Classical game\"]\n[Site \"https://lichess.org/qnmjcpgo\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"Opponent\"]\n[Black \"Meera\"]\n[Result \"0-1\"]\n[UTCDate \"2013.01.01\"]\n[UTCTime \"17:19:53\"]\n[WhiteElo \"1624\"]\n[BlackElo \"1547\"]\n[WhiteRatingDiff \"-92\"]\n[BlackRatingDiff \"+12\"]\n[ECO \"E20\"]\n[Opening \"Nimzo-Indian Defense #2\"]\n[TimeControl \"480+10\"]\n[Termination \"Normal\"]\n\n1. d4 e6 2. c4 Nf6 3. Nc3 b6 4. Bf4 Bb7 5. Nb5 Bb4+ 6. Bd2 Bxd2+ 7. Qxd2 O-O 8. Qf4 Na6 9. Nf3 d6 10. O-O-O Ne4 11. Nh4 e5 12. dxe5 dxe5 13. Qxe5 Qxh4 14. g3 Nxg3 15. fxg3 Qxc4+ 16. Nc3 Bxh1 17. Rd4 Qc6 18. Rg4 Qh6+ 19. Kb1 Rfe8 20. Qb5 Bf3 21. Rh4 Qd2 22. Qxa6 Rad8 23. a4 Qe1+ 24. Ka2 Qxf1 25. Qxa7 Bxe2 26. Qxc7 Rc8 27. Qd7 Bc4+ 28. Ka3 Qa1+ 29. Kb4 Be6 30. Qd4 Qxb2# 0-1"
+ },
+ "outcome": "won the game",
+ "accuracy": {
+  "student": 92.5,
+  "opponent": 88.7
+ },
+ "counts": {
+  "blunder": 1,
+  "mistake": 1,
+  "inaccuracy": 1
+ },
+ "moments": [
+  {
+   "kind": "mistake",
+   "judgement": "blunder",
+   "ply": 21,
+   "move_number": 11,
+   "color": "black",
+   "label": "11... e5",
+   "played": "e5",
+   "best": "g5",
+   "best_line": [
+    "g5",
+    "Qe3",
+    "gxh4",
+    "f3",
+    "Qg5",
+    "Qxg5+",
+    "Nxg5",
+    "d5"
+   ],
+   "reply_line": [
+    "dxe5",
+    "g5"
+   ],
+   "eval_before": "winning for you",
+   "eval_after": "clearly better for you",
+   "score_before": "+5.5",
+   "score_after": "+2.5",
+   "win_before": 88.4,
+   "win_after": 71.7,
+   "sentences": [
+    "Before e5 the position was winning for you; after it, the position was clearly better for you.",
+    "Your opponent's best reply is dxe5, which captures your pawn on e5.",
+    "The better move was g5.",
+    "g5 attacks the queen on f4 and the knight on h4 at the same time (a fork).",
+    "Following the best line (g5, Qe3, gxh4, f3), you would win about 3 points of material."
+   ],
+   "themes": [
+    "missed fork"
+   ],
+   "mates": [],
+   "fen_before": "r2q1rk1/pbp2ppp/np1pp3/1N6/2PPnQ1N/8/PP2PPPP/2KR1B1R b - - 3 11",
+   "fen_after": "r2q1rk1/pbp2ppp/np1p4/1N2p3/2PPnQ1N/8/PP2PPPP/2KR1B1R w - - 0 12",
+   "played_uci": "e6e5",
+   "best_uci": "g7g5",
+   "reply_uci": "d4e5",
+   "highlight": [],
+   "allowed_sans": [
+    "Nxg5",
+    "Qe3",
+    "Qg5",
+    "Qxg5",
+    "d5",
+    "dxe5",
+    "e5",
+    "f3",
+    "g5",
+    "gxh4"
+   ],
+   "allowed_squares": [
+    "d4",
+    "d5",
+    "d8",
+    "e3",
+    "e4",
+    "e5",
+    "e6",
+    "f2",
+    "f3",
+    "f4",
+    "g5",
+    "g7",
+    "h4"
+   ],
+   "allowed_pieces": [
+    "king",
+    "knight",
+    "pawn",
+    "queen"
+   ],
+   "min_move_number": 10,
+   "max_move_number": 16,
+   "note": {
+    "headline": "Missed a powerful fork with g5",
+    "explanation": "After you played e5, your opponent replied with dxe5, which was the best response. If you had played g5 instead, it would have attacked both the queen and the knight at the same time.",
+    "question": "Looking at the position before your move, what tactical opportunities were available to challenge your opponent's pieces?",
+    "tip": "Always look for ways to attack multiple enemy pieces simultaneously."
+   },
+   "note_source": "model",
+   "attempts": 1,
+   "caught": [],
+   "hallucinations_caught": 0
+  },
+  {
+   "kind": "mistake",
+   "judgement": "mistake",
+   "ply": 23,
+   "move_number": 12,
+   "color": "black",
+   "label": "12... dxe5",
+   "played": "dxe5",
+   "best": "g5",
+   "best_line": [
+    "g5",
+    "Qe3",
+    "gxh4",
+    "f3",
+    "Qg5",
+    "Qxg5+",
+    "Nxg5",
+    "exd6"
+   ],
+   "reply_line": [
+    "Rxd8",
+    "exf4",
+    "Rxa8",
+    "Rxa8",
+    "f3",
+    "c6",
+    "Nc3",
+    "Nxc3"
+   ],
+   "eval_before": "clearly better for you",
+   "eval_after": "slightly better for you",
+   "score_before": "+2.7",
+   "score_after": "+1.1",
+   "win_before": 72.7,
+   "win_after": 60.2,
+   "sentences": [
+    "Before dxe5 the position was clearly better for you; after it, the position was slightly better for you.",
+    "After dxe5, your queen on d8 can be taken by the rook on d1, which is worth less.",
+    "After dxe5, your pawn on e5 is attacked by the queen on f4 and nothing defends it.",
+    "Your opponent's best reply is Rxd8, which captures your queen on d8.",
+    "The better move was g5.",
+    "g5 attacks the queen on f4 and the knight on h4 at the same time (a fork).",
+    "Following the best line (g5, Qe3, gxh4, f3), you would win about 2 points of material."
+   ],
+   "themes": [
+    "hanging piece",
+    "missed fork"
+   ],
+   "mates": [],
+   "fen_before": "r2q1rk1/pbp2ppp/np1p4/1N2P3/2P1nQ1N/8/PP2PPPP/2KR1B1R b - - 0 12",
+   "fen_after": "r2q1rk1/pbp2ppp/np6/1N2p3/2P1nQ1N/8/PP2PPPP/2KR1B1R w - - 0 13",
+   "played_uci": "d6e5",
+   "best_uci": "g7g5",
+   "reply_uci": "d1d8",
+   "highlight": [
+    "d8",
+    "e5"
+   ],
+   "allowed_sans": [
+    "Nc3",
+    "Nxc3",
+    "Nxg5",
+    "Qe3",
+    "Qg5",
+    "Qxg5",
+    "Rxa8",
+    "Rxd8",
+    "c6",
+    "dxe5",
+    "exd6",
+    "exf4",
+    "f3",
+    "g5",
+    "gxh4"
+   ],
+   "allowed_squares": [
+    "a8",
+    "b5",
+    "c3",
+    "c6",
+    "c7",
+    "d1",
+    "d6",
+    "d8",
+    "e3",
+    "e4",
+    "e5",
+    "f2",
+    "f3",
+    "f4",
+    "f8",
+    "g5",
+    "g7",
+    "h4"
+   ],
+   "allowed_pieces": [
+    "king",
+    "knight",
+    "pawn",
+    "queen",
+    "rook"
+   ],
+   "min_move_number": 11,
+   "max_move_number": 17,
+   "note": {
+    "headline": "Look for forks with g5",
+    "explanation": "After 12... dxe5, your queen on d8 became vulnerable, and your pawn on e5 was undefended. Playing g5 would have created a fork, attacking both the queen on f4 and the knight on h4.",
+    "question": "If you played g5 instead of dxe5, what two pieces would your move attack?",
+    "tip": "Always check for multiple threats when making a move."
+   },
+   "note_source": "model",
+   "attempts": 1,
+   "caught": [],
+   "hallucinations_caught": 0
+  },
+  {
+   "kind": "mistake",
+   "judgement": null,
+   "ply": 57,
+   "move_number": 29,
+   "color": "black",
+   "label": "29... Be6",
+   "played": "Be6",
+   "best": "Qxb2#",
+   "best_line": [
+    "Qxb2#"
+   ],
+   "reply_line": [
+    "Qd2",
+    "Red8",
+    "Qc2",
+    "f5",
+    "Rf4",
+    "Qg1",
+    "Rf2",
+    "Qh1"
+   ],
+   "eval_before": "a forced checkmate for you",
+   "eval_after": "winning for you",
+   "score_before": "#1",
+   "score_after": "+10.0",
+   "win_before": 97.5,
+   "win_after": 97.5,
+   "sentences": [
+    "Before Be6 the position was a forced checkmate for you; after it, the position was winning for you.",
+    "You had a forced checkmate in 1, starting with Qxb2#.",
+    "Your opponent's best reply is Qd2.",
+    "The better move was Qxb2#, which captures the opponent's pawn on b2 for free and it is checkmate."
+   ],
+   "themes": [
+    "missed checkmate",
+    "free piece"
+   ],
+   "mates": [
+    1
+   ],
+   "fen_before": "2r1r1k1/3Q1ppp/1p6/8/PKb4R/2N3P1/1P5P/q7 b - - 6 29",
+   "fen_after": "2r1r1k1/3Q1ppp/1p2b3/8/PK5R/2N3P1/1P5P/q7 w - - 7 30",
+   "played_uci": "c4e6",
+   "best_uci": "a1b2",
+   "reply_uci": "d7d2",
+   "highlight": [],
+   "allowed_sans": [
+    "Be6",
+    "Qc2",
+    "Qd2",
+    "Qg1",
+    "Qh1",
+    "Qxb2",
+    "Red8",
+    "Rf2",
+    "Rf4",
+    "f5"
+   ],
+   "allowed_squares": [
+    "a1",
+    "b2",
+    "c2",
+    "c4",
+    "d2",
+    "d7",
+    "d8",
+    "e6",
+    "e8",
+    "f2",
+    "f4",
+    "f5",
+    "f7",
+    "g1",
+    "h1",
+    "h4"
+   ],
+   "allowed_pieces": [
+    "bishop",
+    "king",
+    "pawn",
+    "queen",
+    "rook"
+   ],
+   "min_move_number": 28,
+   "max_move_number": 34,
+   "note": {
+    "headline": "Spot the immediate checkmate opportunity",
+    "explanation": "After playing Be6, you missed a winning sequence. You actually had a forced checkmate in 1 starting with Qxb2#.",
+    "question": "When looking at the board, what immediate threats or captures can you see that end the game right now?",
+    "tip": "Always check for forced wins before making a developing move."
+   },
+   "note_source": "model",
+   "attempts": 1,
+   "caught": [],
+   "hallucinations_caught": 0
+  }
+ ],
+ "good_moment": {
+  "kind": "good",
+  "judgement": null,
+  "ply": 59,
+  "move_number": 30,
+  "color": "black",
+  "label": "30... Qxb2#",
+  "played": "Qxb2#",
+  "best": "Qxb2#",
+  "best_line": [
+   "Qxb2#"
+  ],
+  "reply_line": [],
+  "eval_before": "a forced checkmate for you",
+  "eval_after": "winning for you",
+  "score_before": "#1",
+  "score_after": "checkmate",
+  "win_before": 97.5,
+  "win_after": 97.5,
+  "sentences": [
+   "30... Qxb2# was checkmate. You finished the game!"
+  ],
+  "themes": [
+   "checkmate"
+  ],
+  "mates": [],
+  "fen_before": "2r1r1k1/5ppp/1p2b3/8/PK1Q3R/2N3P1/1P5P/q7 b - - 8 30",
+  "fen_after": "2r1r1k1/5ppp/1p2b3/8/PK1Q3R/2N3P1/1q5P/8 w - - 0 31",
+  "played_uci": "a1b2",
+  "best_uci": "a1b2",
+  "reply_uci": null,
+  "highlight": [],
+  "allowed_sans": [
+   "Qxb2"
+  ],
+  "allowed_squares": [
+   "a1",
+   "b2"
+  ],
+  "allowed_pieces": [
+   "king",
+   "queen"
+  ],
+  "min_move_number": 29,
+  "max_move_number": 32,
+  "note": {
+   "headline": "Fantastic checkmate with the Queen!",
+   "explanation": "Your move 30... Qxb2# delivered checkmate. This move ended the game decisively.",
+   "question": "What made 30... Qxb2# a checkmate?",
+   "tip": "Always look for forcing moves that end the game."
+  },
+  "note_source": "model",
+  "attempts": 1,
+  "caught": [],
+  "hallucinations_caught": 0
+ },
+ "habits": {
+  "castled_on_move": 7,
+  "early_queen_moves": 0,
+  "minors_developed_by_move_10": 4,
+  "moves_played": 30
+ },
+ "habit_sentences": [
+  "The student castled on move 7.",
+  "The student developed 4 of 4 knights and bishops by move 10."
+ ],
+ "summary": {
+  "summary": "You played Black and managed to win the game with a high accuracy. While there were some moments where you missed tactical opportunities, you eventually secured the win with a checkmate.",
+  "strengths": [
+   "You developed four of your knights and bishops by move ten.",
+   "You castled on move seven."
+  ],
+  "focus": [
+   "Be careful of forks when pieces are attacking your queen and knight.",
+   "Look for forced checkmates, even when you think you are winning."
+  ],
+  "homework": "Practice spotting tactical threats, especially forks, in your practice games this week.",
+  "parent_note": "Your child played very well in this game, showing good development of their pieces early on. This week, focusing on spotting tricky tactical combinations will help them improve further."
+ },
+ "summary_source": "model",
+ "summary_caught": [],
+ "win_series": [
+  47.1,
+  47.7,
+  46.5,
+  48.0,
+  47.9,
+  48.2,
+  39.3,
+  49.6,
+  47.8,
+  54.5,
+  55.0,
+  53.8,
+  53.1,
+  53.0,
+  52.8,
+  59.3,
+  55.3,
+  56.0,
+  52.8,
+  58.7,
+  57.2,
+  88.4,
+  71.7,
+  72.7,
+  60.2,
+  95.1,
+  95.0,
+  95.3,
+  93.1,
+  95.2,
+  94.7,
+  95.0,
+  94.6,
+  95.5,
+  95.5,
+  95.6,
+  95.7,
+  96.1,
+  95.8,
+  97.1,
+  95.6,
+  96.3,
+  92.5,
+  95.9,
+  95.0,
+  96.0,
+  96.1,
+  96.3,
+  96.3,
+  96.5,
+  96.8,
+  96.8,
+  96.8,
+  97.5,
+  97.4,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5
+ ],
+ "engine": {
+  "name": "Stockfish 19",
+  "depth": 14
+ },
+ "model": {
+  "label": "gemma4:e4b-it-qat via Ollama on this computer",
+  "local": true
+ },
+ "timings": {
+  "engine_s": 38.0,
+  "model_s": 71.5,
+  "total_s": 109.5
+ },
+ "stats": {
+  "model_notes": 5,
+  "partial_notes": 0,
+  "template_notes": 0,
+  "retries": 0,
+  "hallucinations_caught": 0,
+  "model_calls": 5,
+  "prompt_tokens": 2547,
+  "output_tokens": 579
+ },
+ "annotated_pgn": "[Event \"Rated Classical game\"]\n[Site \"https://lichess.org/qnmjcpgo\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"Opponent\"]\n[Black \"Meera\"]\n[Result \"0-1\"]\n[UTCDate \"2013.01.01\"]\n[UTCTime \"17:19:53\"]\n[WhiteElo \"1624\"]\n[BlackElo \"1547\"]\n[WhiteRatingDiff \"-92\"]\n[BlackRatingDiff \"+12\"]\n[ECO \"E20\"]\n[Opening \"Nimzo-Indian Defense #2\"]\n[TimeControl \"480+10\"]\n[Termination \"Normal\"]\n[Annotator \"Second (Stockfish + Gemma)\"]\n\n1. d4 e6 2. c4 Nf6 3. Nc3 b6 4. Bf4 Bb7 5. Nb5 Bb4+ 6. Bd2 Bxd2+ 7. Qxd2 O-O 8.\nQf4 Na6 9. Nf3 d6 10. O-O-O Ne4 11. Nh4 e5 $4\n{ Missed a powerful fork with g5 After you played e5, your opponent replied with dxe5, which was the best response. If you had played g5 instead, it would have attacked both the queen and the knight at the same time. }\n( 11... g5 12. Qe3 gxh4 13. f3 Qg5 14. Qxg5+ ) 12. dxe5 dxe5 $2\n{ Look for forks with g5 After 12... dxe5, your queen on d8 became vulnerable, and your pawn on e5 was undefended. Playing g5 would have created a fork, attacking both the queen on f4 and the knight on h4. }\n( 12... g5 13. Qe3 gxh4 14. f3 Qg5 15. Qxg5+ ) 13. Qxe5 Qxh4 14. g3 Nxg3 15.\nfxg3 Qxc4+ 16. Nc3 Bxh1 17. Rd4 Qc6 18. Rg4 Qh6+ 19. Kb1 Rfe8 20. Qb5 Bf3 21.\nRh4 Qd2 22. Qxa6 Rad8 23. a4 Qe1+ 24. Ka2 Qxf1 25. Qxa7 Bxe2 26. Qxc7 Rc8 27.\nQd7 Bc4+ 28. Ka3 Qa1+ 29. Kb4 Be6\n{ Spot the immediate checkmate opportunity After playing Be6, you missed a winning sequence. You actually had a forced checkmate in 1 starting with Qxb2#. }\n( 29... Qxb2# ) 30. Qd4 Qxb2# $1\n{ Fantastic checkmate with the Queen! Your move 30... Qxb2# delivered checkmate. This move ended the game decisively. }\n0-1",
+ "sample_title": "Meera wins, but missed a fork",
+ "sample_blurb": "Real 1547-rated classical game. A win with lessons in it, for an intermediate player."
+}

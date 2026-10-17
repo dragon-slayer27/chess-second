@@ -131,7 +131,8 @@ Write a JSON object with these keys:
 "tip": one short rule of thumb the student can remember. No moves or squares in the tip."""
 
 
-def summary_prompt(context: dict, language: str) -> str:
+def summary_facts(context: dict) -> str:
+    """The fact sheet for the whole game; the summary verifier checks against exactly this."""
     lines = [
         f"- The student played {context['color']} and {context['outcome']}.",
         f"- The student's accuracy was {context['accuracy']}%. The opponent's accuracy was {context['opponent_accuracy']}%.",
@@ -144,9 +145,12 @@ def summary_prompt(context: dict, language: str) -> str:
         good = context["good"]
         lines.append(f"- Good moment {good['label']}: {good['sentences'][0]}")
     lines.extend(f"- {sentence}" for sentence in context["habits"])
-    facts = "\n".join(lines)
+    return "\n".join(lines)
+
+
+def summary_prompt(context: dict, language: str) -> str:
     return f"""FACTS about the whole game:
-{facts}
+{summary_facts(context)}
 
 Write a JSON object with these keys:
 "summary": 2 sentences about how the game went, using only the FACTS above. Do not mention any moves.

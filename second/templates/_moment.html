@@ -30,6 +30,7 @@
       <details class="facts">
         <summary>
           {% if moment.note_source == "model" %}<span class="check">&#10003;</span> Every claim checked against the engine
+          {% elif moment.note_source == "partial" %}<span class="check">&#10003;</span> Checked; parts rewritten from the engine facts
           {% else %}<span class="check muted">&#9679;</span> Written from the engine facts{% endif %}
         </summary>
         <ul>{% for sentence in moment.sentences %}<li>{{ sentence }}</li>{% endfor %}</ul>
@@ -38,7 +39,8 @@
         {% if moment.best_line %}<p class="mono">Best line: {{ moment.best_line[:6]|join(" ") }}</p>{% endif %}
         {% endif %}
         {% if moment.caught %}
-        <p class="caught">The verifier rejected {{ moment.attempts - (1 if moment.note_source == "model" else 0) }} earlier draft{{ '' if moment.attempts == 2 else 's' }}: {{ moment.caught|join("; ") }}.</p>
+        {% set rejected = moment.attempts - (1 if moment.note_source == "model" else 0) %}
+        <p class="caught">The verifier rejected {{ rejected }} draft{{ '' if rejected == 1 else 's' }}: {{ moment.caught|join("; ") }}.</p>
         {% endif %}
       </details>
     </div>

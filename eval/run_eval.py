@@ -125,11 +125,15 @@ def score(note: dict, moment: dict) -> dict:
     text = note_text(note)
     issues = [i for i in check_text(text, Allowed.from_moment(moment)) if i.is_hallucination]
     best = moment["best"].rstrip("+#") if moment["best"] else None
+    played = moment["played"].rstrip("+#")
+    moves = [t for t in notation_tokens(text) if not SQUARE_ONLY_RE.fullmatch(t) and t != played]
+    names_best = bool(best and best in notation_tokens(text))
     return {
         "unconfirmed": [str(i) for i in issues],
         "kinds": sorted({i.kind for i in issues}),
         "impossible": impossible_moves(text, moment),
-        "names_best": bool(best and best in notation_tokens(text)),
+        "suggests_move": bool(moves) or names_best,
+        "names_best": names_best,
     }
 
 
@@ -158,6 +162,7 @@ def summarise(records: list[dict]) -> dict:
             "notes": len(scored),
             "unconfirmed": sum(1 for r in scored if r["score"]["unconfirmed"]),
             "impossible": sum(1 for r in scored if r["score"]["impossible"]),
+            "suggests_move": sum(1 for r in scored if r["score"].get("suggests_move")),
             "names_best": sum(1 for r in scored if r["score"]["names_best"]),
             "median_seconds": round(statistics.median(r["seconds"] for r in scored), 1) if scored else None,
             "kinds": dict(kinds),
@@ -172,12 +177,13 @@ def pct(part: int, whole: int) -> str:
     return f"{part}/{whole} ({round(100 * part / whole)}%)" if whole else "-"
 
 
-def write_markdown(summary: dict, meta: dict, path: Path) -> None:
+def write_markdown(summary: dict, meta: dict, path: Path, records: list[dict]) -> None:
     raw, grounded, second = summary["raw"], summary["grounded"], summary["second"]
     rows = [
-        ("Notes with a chess claim the engine didn't confirm", "unconfirmed"),
+        ("Notes that suggest a concrete move", "suggests_move"),
+        ("...and it is Stockfish's better move", "names_best"),
         ("Notes with a piece move that isn't even legal", "impossible"),
-        ("Notes that name the engine's better move", "names_best"),
+        ("Notes with a chess claim the engine didn't confirm", "unconfirmed"),
     ]
     lines = [
         "# Evaluation: does Second stop Gemma from inventing chess?",
@@ -203,6 +209,14 @@ def write_markdown(summary: dict, meta: dict, path: Path) -> None:
         "",
         f"Second needed a retry for {pct(second['retried'], second['notes'])} of notes and fell back to the "
         f"plain template for {pct(second['template'], second['notes'])}.",
+    ]
+    if second["retried"] == 0:
+        lines.append(
+            "With the facts in the prompt, Gemma's first answer passed the verifier every time in this run, so the "
+            "verifier never had to step in. It is there for the times grounding isn't enough; `tests/test_verify.py` "
+            "shows what it catches."
+        )
+    lines += [
         "",
         "Kinds of unconfirmed claims (number of notes):",
         "",
@@ -211,6 +225,19 @@ def write_markdown(summary: dict, meta: dict, path: Path) -> None:
     ]
     for kind in sorted(set(raw["kinds"]) | set(grounded["kinds"])):
         lines.append(f"| {kind.replace('_', ' ')} | {raw['kinds'].get(kind, 0)} | {grounded['kinds'].get(kind, 0)} |")
+    examples = [r for r in records if r["raw"].get("score", {}).get("impossible")][:3]
+    if examples:
+        lines += ["", "## Examples", ""]
+        for record in examples:
+            moment = record["moment"]
+            lines += [
+                f"**{moment['label']}** ({moment['judgement']}, [game]({record['site']})). Stockfish's better move: **{moment['best']}**.",
+                "",
+                f'- Plain Gemma: "{record["raw"]["note"].get("explanation", "")}" '
+                f"(not legal on the board: {', '.join(record['raw']['score']['impossible'])})",
+                f'- Second: "{record["second"]["note"].get("explanation", "")}"',
+                "",
+            ]
     lines += [
         "",
         '"Unconfirmed" means the note mentions a move, square, piece, mate-in-N, move number or evaluation that is not',
@@ -223,13 +250,32 @@ def write_markdown(summary: dict, meta: dict, path: Path) -> None:
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def rescore(path: Path) -> None:
+    """Re-check saved notes with the current verifier, without calling the model again."""
+    data = json.loads(path.read_text(encoding="utf-8"))
+    for record in data["records"]:
+        for condition in CONDITIONS:
+            entry = record[condition]
+            if "note" in entry:
+                entry["score"] = score(entry["note"], record["moment"])
+    data["summary"] = summarise(data["records"])
+    data["meta"]["rescored"] = time.strftime("%Y-%m-%d")
+    path.write_text(json.dumps(data, indent=1, ensure_ascii=False), encoding="utf-8")
+    write_markdown(data["summary"], data["meta"], HERE / "RESULTS.md", data["records"])
+    print(json.dumps(data["summary"], indent=1))
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--games", type=Path, default=HERE / "games.pgn")
     parser.add_argument("--limit", type=int, default=30)
     parser.add_argument("--per-side", type=int, default=1)
     parser.add_argument("--hardware", default="laptop CPU")
+    parser.add_argument("--rescore", action="store_true", help="re-check results.json with the current verifier")
     args = parser.parse_args()
+    if args.rescore:
+        rescore(HERE / "results.json")
+        return
 
     settings = load_settings()
     text = args.games.read_text(encoding="utf-8")
@@ -306,7 +352,7 @@ def main() -> None:
         json.dumps({"meta": meta, "summary": summary, "records": records}, indent=1, ensure_ascii=False),
         encoding="utf-8",
     )
-    write_markdown(summary, meta, HERE / "RESULTS.md")
+    write_markdown(summary, meta, HERE / "RESULTS.md", records)
     print(json.dumps(summary, indent=1))
 
 

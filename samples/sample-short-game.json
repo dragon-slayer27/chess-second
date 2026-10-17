@@ -1,0 +1,621 @@
+{
+ "id": "sample-short-game",
+ "version": 1,
+ "created_at": "2026-10-17T09:51:10+00:00",
+ "student": {
+  "name": "Kabir",
+  "color": "white",
+  "level": "beginner",
+  "language": "Hinglish"
+ },
+ "game": {
+  "white": "Kabir",
+  "black": "Opponent",
+  "white_elo": "1409",
+  "black_elo": "1342",
+  "result": "1-0",
+  "date": "????.??.??",
+  "event": "Rated Classical game",
+  "site": "https://lichess.org/w67x8w2b",
+  "opening": "Gunderam Defense",
+  "moves": 27,
+  "pgn": "[Event \"Rated Classical game\"]\n[Site \"https://lichess.org/w67x8w2b\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"Kabir\"]\n[Black \"Opponent\"]\n[Result \"1-0\"]\n[UTCDate \"2013.01.03\"]\n[UTCTime \"09:24:04\"]\n[WhiteElo \"1409\"]\n[BlackElo \"1342\"]\n[WhiteRatingDiff \"+8\"]\n[BlackRatingDiff \"-10\"]\n[ECO \"C40\"]\n[Opening \"Gunderam Defense\"]\n[TimeControl \"480+8\"]\n[Termination \"Normal\"]\n\n1. e4 e5 2. Nf3 Qe7 3. d4 exd4 4. Nxd4 Qxe4+ 5. Be3 Bb4+ 6. c3 Bc5 7. Bd3 Qg4 8. Qxg4 d5 9. Qxg7 Bxd4 10. Bxd4 Ne7 11. Qxh8+ Kd7 12. Qxh7 Nbc6 13. Qxf7 a5 14. O-O b6 15. Bf6 Bb7 16. Bf5+ Kd6 17. Qe6+ Kc5 18. b4+ axb4 19. cxb4+ Kxb4 20. Nd2 Ka3 21. Qe3+ Kb4 22. Rab1+ Ka5 23. Bxe7 Nxe7 24. Qxe7 b5 25. Qb4+ Kb6 26. Qxb5+ Ka7 27. Qxb7# 1-0"
+ },
+ "outcome": "won the game",
+ "accuracy": {
+  "student": 96.8,
+  "opponent": 94.4
+ },
+ "counts": {
+  "blunder": 0,
+  "mistake": 1,
+  "inaccuracy": 0
+ },
+ "moments": [
+  {
+   "kind": "mistake",
+   "judgement": "mistake",
+   "ply": 12,
+   "move_number": 7,
+   "color": "white",
+   "label": "7. Bd3",
+   "played": "Bd3",
+   "best": "Nd2",
+   "best_line": [
+    "Nd2",
+    "Qg6",
+    "N2f3",
+    "Bxd4",
+    "Nxd4",
+    "Nc6",
+    "h4",
+    "d6"
+   ],
+   "reply_line": [
+    "Qxg2",
+    "Kd2",
+    "Nc6",
+    "Rg1",
+    "Qd5",
+    "Rxg7",
+    "Nge7",
+    "Rg5"
+   ],
+   "eval_before": "about equal",
+   "eval_after": "slightly worse for you",
+   "score_before": "+0.5",
+   "score_after": "-0.9",
+   "win_before": 54.1,
+   "win_after": 41.7,
+   "sentences": [
+    "Before Bd3 the position was about equal; after it, the position was slightly worse for you.",
+    "After Bd3, your pawn on g2 is attacked by the queen on e4 and nothing defends it.",
+    "Your opponent's best reply is Qxg2, which captures your pawn on g2.",
+    "The better move was Nd2."
+   ],
+   "themes": [
+    "hanging piece"
+   ],
+   "mates": [],
+   "fen_before": "rnb1k1nr/pppp1ppp/8/2b5/3Nq3/2P1B3/PP3PPP/RN1QKB1R w KQkq - 1 7",
+   "fen_after": "rnb1k1nr/pppp1ppp/8/2b5/3Nq3/2PBB3/PP3PPP/RN1QK2R b KQkq - 2 7",
+   "played_uci": "f1d3",
+   "best_uci": "b1d2",
+   "reply_uci": "e4g2",
+   "highlight": [
+    "g2"
+   ],
+   "allowed_sans": [
+    "Bd3",
+    "Bxd4",
+    "Kd2",
+    "N2f3",
+    "Nc6",
+    "Nd2",
+    "Nge7",
+    "Nxd4",
+    "Qd5",
+    "Qg6",
+    "Qxg2",
+    "Rg1",
+    "Rg5",
+    "Rxg7",
+    "d6",
+    "h4"
+   ],
+   "allowed_squares": [
+    "b1",
+    "b8",
+    "c5",
+    "c6",
+    "d2",
+    "d3",
+    "d4",
+    "d5",
+    "d6",
+    "d7",
+    "e1",
+    "e4",
+    "e7",
+    "f1",
+    "f3",
+    "g1",
+    "g2",
+    "g5",
+    "g6",
+    "g7",
+    "g8",
+    "h1",
+    "h2",
+    "h4"
+   ],
+   "allowed_pieces": [
+    "bishop",
+    "king",
+    "knight",
+    "pawn",
+    "queen",
+    "rook"
+   ],
+   "min_move_number": 6,
+   "max_move_number": 12,
+   "note": {
+    "headline": "Your pawn was attacked after Bd3",
+    "explanation": "After you played Bd3, your pawn on g2 was attacked by the queen on e4 and nothing was defending it. Playing Nd2 would have been a better choice for you.",
+    "question": "When your queen attacks a piece, what should you check first?",
+    "tip": "Always look for your opponent's threats."
+   },
+   "note_source": "model",
+   "attempts": 1,
+   "caught": [],
+   "hallucinations_caught": 0
+  },
+  {
+   "kind": "mistake",
+   "judgement": null,
+   "ply": 26,
+   "move_number": 14,
+   "color": "white",
+   "label": "14. O-O",
+   "played": "O-O",
+   "best": "Bf5+",
+   "best_line": [
+    "Bf5+",
+    "Kd6",
+    "Qf6+",
+    "Be6",
+    "Qxe6#"
+   ],
+   "reply_line": [
+    "Nxd4",
+    "cxd4",
+    "b6",
+    "Re1",
+    "Kc6",
+    "Qxe7",
+    "Kb7",
+    "Rc1"
+   ],
+   "eval_before": "a forced checkmate for you",
+   "eval_after": "winning for you",
+   "score_before": "#3",
+   "score_after": "+10.0",
+   "win_before": 97.5,
+   "win_after": 97.5,
+   "sentences": [
+    "Before O-O the position was a forced checkmate for you; after it, the position was winning for you.",
+    "You had a forced checkmate in 3, starting with Bf5+.",
+    "Your opponent's best reply is Nxd4, which captures your bishop on d4.",
+    "The better move was Bf5+, which gives check."
+   ],
+   "themes": [
+    "missed checkmate"
+   ],
+   "mates": [
+    3
+   ],
+   "fen_before": "r1b5/1ppknQ2/2n5/p2p4/3B4/2PB4/PP3PPP/RN2K2R w KQ - 0 14",
+   "fen_after": "r1b5/1ppknQ2/2n5/p2p4/3B4/2PB4/PP3PPP/RN3RK1 b - - 1 14",
+   "played_uci": "e1g1",
+   "best_uci": "d3f5",
+   "reply_uci": "c6d4",
+   "highlight": [],
+   "allowed_sans": [
+    "Be6",
+    "Bf5",
+    "Kb7",
+    "Kc6",
+    "Kd6",
+    "Nxd4",
+    "O-O",
+    "Qf6",
+    "Qxe6",
+    "Qxe7",
+    "Rc1",
+    "Re1",
+    "b6",
+    "cxd4"
+   ],
+   "allowed_squares": [
+    "b6",
+    "b7",
+    "c1",
+    "c3",
+    "c6",
+    "c8",
+    "d3",
+    "d4",
+    "d6",
+    "d7",
+    "e1",
+    "e6",
+    "e7",
+    "f1",
+    "f5",
+    "f6",
+    "f7",
+    "g1"
+   ],
+   "allowed_pieces": [
+    "bishop",
+    "king",
+    "knight",
+    "pawn",
+    "queen",
+    "rook"
+   ],
+   "min_move_number": 13,
+   "max_move_number": 19,
+   "note": {
+    "headline": "Forced mate was missed",
+    "explanation": "After O-O, you missed a chance for a quick win. You had a forced checkmate in 3 starting with Bf5+.",
+    "question": "What would happen if you played Bf5+ instead of O-O?",
+    "tip": "Look for ways to check your opponent."
+   },
+   "note_source": "model",
+   "attempts": 1,
+   "caught": [],
+   "hallucinations_caught": 0
+  },
+  {
+   "kind": "mistake",
+   "judgement": null,
+   "ply": 28,
+   "move_number": 15,
+   "color": "white",
+   "label": "15. Bf6",
+   "played": "Bf6",
+   "best": "Bf5+",
+   "best_line": [
+    "Bf5+",
+    "Kd6",
+    "Qf6+",
+    "Be6",
+    "Qxe6#"
+   ],
+   "reply_line": [
+    "Kd6",
+    "Re1",
+    "Nf5",
+    "Na3",
+    "Nce7",
+    "Nb5+",
+    "Kc6",
+    "Bxe7"
+   ],
+   "eval_before": "a forced checkmate for you",
+   "eval_after": "winning for you",
+   "score_before": "#3",
+   "score_after": "+10.0",
+   "win_before": 97.5,
+   "win_after": 97.5,
+   "sentences": [
+    "Before Bf6 the position was a forced checkmate for you; after it, the position was winning for you.",
+    "You had a forced checkmate in 3, starting with Bf5+.",
+    "Your opponent's best reply is Kd6.",
+    "The better move was Bf5+, which gives check."
+   ],
+   "themes": [
+    "missed checkmate"
+   ],
+   "mates": [
+    3
+   ],
+   "fen_before": "r1b5/2pknQ2/1pn5/p2p4/3B4/2PB4/PP3PPP/RN3RK1 w - - 0 15",
+   "fen_after": "r1b5/2pknQ2/1pn2B2/p2p4/8/2PB4/PP3PPP/RN3RK1 b - - 1 15",
+   "played_uci": "d4f6",
+   "best_uci": "d3f5",
+   "reply_uci": "d7d6",
+   "highlight": [],
+   "allowed_sans": [
+    "Be6",
+    "Bf5",
+    "Bf6",
+    "Bxe7",
+    "Kc6",
+    "Kd6",
+    "Na3",
+    "Nb5",
+    "Nce7",
+    "Nf5",
+    "Qf6",
+    "Qxe6",
+    "Re1"
+   ],
+   "allowed_squares": [
+    "a3",
+    "b1",
+    "b5",
+    "c6",
+    "c8",
+    "d3",
+    "d4",
+    "d6",
+    "d7",
+    "e1",
+    "e6",
+    "e7",
+    "f1",
+    "f5",
+    "f6",
+    "f7"
+   ],
+   "allowed_pieces": [
+    "bishop",
+    "king",
+    "knight",
+    "queen",
+    "rook"
+   ],
+   "min_move_number": 14,
+   "max_move_number": 20,
+   "note": {
+    "headline": "Forced Mate Missed With Bf6",
+    "explanation": "After you played Bf6, the easy win was lost. You had a forced checkmate in 3 starting with Bf5+.",
+    "question": "What would happen if you played Bf5+ instead of Bf6?",
+    "tip": "Always look for ways to check your opponent."
+   },
+   "note_source": "model",
+   "attempts": 1,
+   "caught": [],
+   "hallucinations_caught": 0
+  },
+  {
+   "kind": "mistake",
+   "judgement": null,
+   "ply": 44,
+   "move_number": 23,
+   "color": "white",
+   "label": "23. Bxe7",
+   "played": "Bxe7",
+   "best": "Qa3#",
+   "best_line": [
+    "Qa3#"
+   ],
+   "reply_line": [
+    "Ka6",
+    "Qa3+",
+    "Na5",
+    "Rfc1",
+    "Rh8",
+    "Rxc7",
+    "Rg8",
+    "Bd3+"
+   ],
+   "eval_before": "a forced checkmate for you",
+   "eval_after": "winning for you",
+   "score_before": "#1",
+   "score_after": "+10.0",
+   "win_before": 97.5,
+   "win_after": 97.5,
+   "sentences": [
+    "Before Bxe7 the position was a forced checkmate for you; after it, the position was winning for you.",
+    "You had a forced checkmate in 1, starting with Qa3#.",
+    "Your opponent's best reply is Ka6.",
+    "The better move was Qa3#, which is checkmate."
+   ],
+   "themes": [
+    "missed checkmate"
+   ],
+   "mates": [
+    1
+   ],
+   "fen_before": "r7/1bp1n3/1pn2B2/k2p1B2/8/4Q3/P2N1PPP/1R3RK1 w - - 6 23",
+   "fen_after": "r7/1bp1B3/1pn5/k2p1B2/8/4Q3/P2N1PPP/1R3RK1 b - - 0 23",
+   "played_uci": "f6e7",
+   "best_uci": "e3a3",
+   "reply_uci": "a5a6",
+   "highlight": [],
+   "allowed_sans": [
+    "Bd3",
+    "Bxe7",
+    "Ka6",
+    "Na5",
+    "Qa3",
+    "Rfc1",
+    "Rg8",
+    "Rh8",
+    "Rxc7"
+   ],
+   "allowed_squares": [
+    "a3",
+    "a5",
+    "a6",
+    "a8",
+    "c1",
+    "c6",
+    "c7",
+    "d3",
+    "e3",
+    "e7",
+    "f1",
+    "f5",
+    "f6",
+    "g8",
+    "h8"
+   ],
+   "allowed_pieces": [
+    "bishop",
+    "king",
+    "knight",
+    "queen",
+    "rook"
+   ],
+   "min_move_number": 22,
+   "max_move_number": 28,
+   "note": {
+    "headline": "Don't miss the quick win",
+    "explanation": "After you played Bxe7, you missed a very fast win. You had a forced checkmate in 1 with Qa3#.",
+    "question": "Looking at the board, what move gives you checkmate right now?",
+    "tip": "Always check for immediate wins first."
+   },
+   "note_source": "model",
+   "attempts": 1,
+   "caught": [],
+   "hallucinations_caught": 0
+  }
+ ],
+ "good_moment": {
+  "kind": "good",
+  "judgement": null,
+  "ply": 52,
+  "move_number": 27,
+  "color": "white",
+  "label": "27. Qxb7#",
+  "played": "Qxb7#",
+  "best": "Qxb7#",
+  "best_line": [
+   "Qxb7#"
+  ],
+  "reply_line": [],
+  "eval_before": "a forced checkmate for you",
+  "eval_after": "winning for you",
+  "score_before": "#1",
+  "score_after": "checkmate",
+  "win_before": 97.5,
+  "win_after": 97.5,
+  "sentences": [
+   "27. Qxb7# was checkmate. You finished the game!"
+  ],
+  "themes": [
+   "checkmate"
+  ],
+  "mates": [],
+  "fen_before": "r7/kbp5/8/1Q1p1B2/8/8/P2N1PPP/1R3RK1 w - - 1 27",
+  "fen_after": "r7/kQp5/8/3p1B2/8/8/P2N1PPP/1R3RK1 b - - 0 27",
+  "played_uci": "b5b7",
+  "best_uci": "b5b7",
+  "reply_uci": null,
+  "highlight": [],
+  "allowed_sans": [
+   "Qxb7"
+  ],
+  "allowed_squares": [
+   "b5",
+   "b7"
+  ],
+  "allowed_pieces": [
+   "king",
+   "queen"
+  ],
+  "min_move_number": 26,
+  "max_move_number": 29,
+  "note": {
+   "headline": "Great job, you won the game!",
+   "explanation": "Your move 27. Qxb7# was checkmate. This means you won the game with that move.",
+   "question": "What did your move 27. Qxb7# do to the opponent's king?",
+   "tip": "Always look for ways to trap the enemy king."
+  },
+  "note_source": "model",
+  "attempts": 1,
+  "caught": [],
+  "hallucinations_caught": 0
+ },
+ "habits": {
+  "castled_on_move": 14,
+  "early_queen_moves": 1,
+  "minors_developed_by_move_10": 3,
+  "moves_played": 27
+ },
+ "habit_sentences": [
+  "The student castled on move 14.",
+  "The student developed 3 of 4 knights and bishops by move 10."
+ ],
+ "summary": {
+  "summary": "You played well and won the game. You had some moments where you missed a win, but you finished the game with checkmate.",
+  "strengths": [
+   "You developed many of your pieces early in the game.",
+   "You played with high accuracy."
+  ],
+  "focus": [
+   "Look out for hanging pieces, like on move 7.",
+   "When you have a chance to win, always check for checkmate."
+  ],
+  "homework": "Practice looking at all the possible ways to win a game before making a move.",
+  "parent_note": "Aapka bachcha bahut achha khela aur bahut acche se pieces develop kiye. Is hafte use winning moves ko dhyaan se dekhna sikhana hai."
+ },
+ "summary_source": "model",
+ "summary_caught": [],
+ "win_series": [
+  53.2,
+  52.3,
+  52.5,
+  51.6,
+  59.2,
+  58.7,
+  57.9,
+  54.5,
+  54.2,
+  54.1,
+  59.5,
+  55.3,
+  54.1,
+  41.7,
+  97.3,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5,
+  97.5
+ ],
+ "engine": {
+  "name": "Stockfish 19",
+  "depth": 14
+ },
+ "model": {
+  "label": "gemma4:e4b-it-qat via Ollama on this computer",
+  "local": true
+ },
+ "timings": {
+  "engine_s": 24.3,
+  "model_s": 77.2,
+  "total_s": 101.5
+ },
+ "stats": {
+  "model_notes": 6,
+  "partial_notes": 0,
+  "template_notes": 0,
+  "retries": 0,
+  "hallucinations_caught": 0,
+  "model_calls": 6,
+  "prompt_tokens": 3005,
+  "output_tokens": 618
+ },
+ "annotated_pgn": "[Event \"Rated Classical game\"]\n[Site \"https://lichess.org/w67x8w2b\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"Kabir\"]\n[Black \"Opponent\"]\n[Result \"1-0\"]\n[UTCDate \"2013.01.03\"]\n[UTCTime \"09:24:04\"]\n[WhiteElo \"1409\"]\n[BlackElo \"1342\"]\n[WhiteRatingDiff \"+8\"]\n[BlackRatingDiff \"-10\"]\n[ECO \"C40\"]\n[Opening \"Gunderam Defense\"]\n[TimeControl \"480+8\"]\n[Termination \"Normal\"]\n[Annotator \"Second (Stockfish + Gemma)\"]\n\n1. e4 e5 2. Nf3 Qe7 3. d4 exd4 4. Nxd4 Qxe4+ 5. Be3 Bb4+ 6. c3 Bc5 7. Bd3 $2\n{ Your pawn was attacked after Bd3 After you played Bd3, your pawn on g2 was attacked by the queen on e4 and nothing was defending it. Playing Nd2 would have been a better choice for you. }\n( 7. Nd2 Qg6 8. N2f3 Bxd4 9. Nxd4 Nc6 ) 7... Qg4 8. Qxg4 d5 9. Qxg7 Bxd4 10.\nBxd4 Ne7 11. Qxh8+ Kd7 12. Qxh7 Nbc6 13. Qxf7 a5 14. O-O\n{ Forced mate was missed After O-O, you missed a chance for a quick win. You had a forced checkmate in 3 starting with Bf5+. }\n( 14. Bf5+ Kd6 15. Qf6+ Be6 16. Qxe6# ) 14... b6 15. Bf6\n{ Forced Mate Missed With Bf6 After you played Bf6, the easy win was lost. You had a forced checkmate in 3 starting with Bf5+. }\n( 15. Bf5+ Kd6 16. Qf6+ Be6 17. Qxe6# ) 15... Bb7 16. Bf5+ Kd6 17. Qe6+ Kc5 18.\nb4+ axb4 19. cxb4+ Kxb4 20. Nd2 Ka3 21. Qe3+ Kb4 22. Rab1+ Ka5 23. Bxe7\n{ Don't miss the quick win After you played Bxe7, you missed a very fast win. You had a forced checkmate in 1 with Qa3#. }\n( 23. Qa3# ) 23... Nxe7 24. Qxe7 b5 25. Qb4+ Kb6 26. Qxb5+ Ka7 27. Qxb7# $1\n{ Great job, you won the game! Your move 27. Qxb7# was checkmate. This means you won the game with that move. }\n1-0",
+ "sample_title": "Kabir wins a short game",
+ "sample_blurb": "Real 1409-rated classical game. Undefended pieces on both sides. Note for parents in Hinglish."
+}

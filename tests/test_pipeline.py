@@ -4,11 +4,13 @@ import chess
 import chess.pgn
 
 from conftest import FRIED_LIVER, SCHOLARS_MATE, needs_stockfish, read
+from second import fallback
 from second.config import load_settings
 from second.facts import build_moment, select_good_moment, select_moments
 from second.llm import LLMError, NoModelClient
+from second.prompts import MOMENT_SCHEMA, moment_prompt
 from second.report import render_standalone
-from second.review import review_game
+from second.review import review_game, write_note
 from second.verify import verify_moment
 
 pytestmark = needs_stockfish
@@ -121,6 +123,30 @@ def test_model_errors_fall_back_to_templates(analyzer):
     assert all(m["note_source"] == "template" for m in review["moments"])
     notes = len(review["moments"]) + bool(review["good_moment"]) + 1
     assert client.calls == notes  # connection errors are not retried
+
+
+def test_only_the_failing_field_falls_back(analyzer):
+    note = {
+        "headline": "The f7 square was weak",
+        "explanation": "After Nf6, your opponent has Qxf7# straight away.",
+        "question": "What was the queen attacking?",
+        "tip": "Next time play Nc6.",  # Nc6 is not in the facts
+    }
+    analysis = analyzer.analyse_game(read(SCHOLARS_MATE))
+    moment = build_moment(select_moments(analysis, chess.BLACK, 1)[0]).to_dict()
+    client = ScriptedClient([note])
+    result = write_note(
+        client,
+        "system",
+        moment_prompt(moment),
+        MOMENT_SCHEMA,
+        lambda data: verify_moment(data, moment),
+        lambda: fallback.moment_note(moment),
+    )
+    assert client.calls == 3
+    assert result["source"] == "partial"
+    assert result["note"]["explanation"] == note["explanation"]
+    assert result["note"]["tip"] == fallback.moment_note(moment)["tip"]
 
 
 def test_report_and_annotated_pgn(analyzer):
